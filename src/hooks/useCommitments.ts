@@ -20,6 +20,7 @@ export function useCommitments() {
 
   useEffect(() => {
     if (Array.isArray(result?.data?.commitments)) {
+      console.log("result",result);
       setCommitments(result!.data!.commitments);
     }
   }, [result, setCommitments]);

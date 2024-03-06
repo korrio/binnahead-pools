@@ -20,7 +20,7 @@ export const assets: Assets = {
 
 export const denominations: Denominations = {
   5: {
-    ETH: [0.001, 0.01]
+    ETH: [0.001, 0.01,0.1,1]
   },
   420: {
     ETH: [0.001, 0.01]

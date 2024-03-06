@@ -106,6 +106,8 @@ function Page() {
   const { zkeyBytes, wasmBytes } = useZKeys();
   const addRecentTransaction = useAddRecentTransaction();
 
+  console.log("existingCommitments",existingCommitments);
+
   const nullifier =
     isNaN(leafIndex) ||
     existingCommitments.length === 0 ||
@@ -265,6 +267,25 @@ function Page() {
       !fee
   );
 
+  // const isGenerateProofDisabled = Boolean(false);
+
+console.log("nullifier",nullifier)
+  console.log("isGenerateProofDisabled", isGenerateProofDisabled)
+  console.log("====")
+
+  console.log("isNullifierInvalid", isNullifierInvalid)
+  console.log("isRecipientInvalid", isRecipientInvalid)
+  console.log("isRelayerInvalid", isRelayerInvalid)
+  console.log("isFeeInvalid", isFeeInvalid)
+  console.log("!secret", !secret)
+  console.log("!nullifier", !nullifier)
+  console.log("(!leafIndex && leafIndex !== 0)", (!leafIndex && leafIndex !== 0))
+  console.log(" depositsTree.length === 0",  depositsTree.length === 0)
+  console.log("accessList.length === 0", accessList.length === 0)
+  console.log("zkeyBytes.data.length === 0", zkeyBytes.data.length === 0)
+  console.log("wasmBytes.data.length === 0", wasmBytes.data.length === 0)
+
+
   const generateZkProof = async () => {
     if (
       isNullifierInvalid ||
@@ -297,6 +318,11 @@ function Page() {
         mainProof: mainProof.map((b) => b.toHexString()),
         subsetProof: subsetProof.map((b) => b.toHexString())
       };
+
+      console.log("input",input)
+      console.log("wasmBytes",wasmBytes)
+      console.log("zkeyBytes",zkeyBytes)
+
       const { proof, publicSignals } = await groth16.fullProve(
         input,
         wasmBytes,
